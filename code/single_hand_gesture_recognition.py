@@ -24,6 +24,7 @@ knn.train(angle, cv2.ml.ROW_SAMPLE, label)
 cap = cv2.VideoCapture(0)
 
 frame_cnt = 0
+system = 1          # 가위바위보 system 묵찌빠임 랜덤함수 넣어서 랜덤하게 바뀌게 해야함
 
 while cap.isOpened():
     ret, img = cap.read()
@@ -64,14 +65,30 @@ while cap.isOpened():
             # Inference gesture
             data = np.array([angle], dtype=np.float32)
             ret, results, neighbours, dist = knn.findNearest(data, 3)
-            idx = int(results[0][0])                                    # 여기에 인식한 가위바위보 dict key 형태 저장 됨
+            rps_result = int(results[0][0])                                    # 여기에 인식한 가위바위보 dict key 형태 저장 됨
+            
+            winner = None
+            if system==0:
+                if rps_result == 0     : text = 'Tie'
+                elif rps_result == 3  : text = 'User wins'  ; winner = 1
+                elif rps_result == 1 or 2: text = 'System wins'   ; winner = 0
+            
+            elif system ==3:
+                if rps_result == 0     : text = 'System wins'  ; winner = 0
+                elif rps_result == 3  : text = 'Tie'
+                elif rps_result == 1 or 2: text = 'User wins'; winner = 1
+                
+            elif system == 1 or system == 2:
+                if rps_result == 0     : text = 'User wins'   ; winner = 1
+                elif rps_result == 3  : text = 'System wins'; winner = 0
+                elif rps_result == 1 or 2: text = 'Tie'
+                
+            org = (int(res.landmark[0].x * img.shape[1]), int(res.landmark[0].y * img.shape[0]))    # putText 위치 좌표
+            cv2.putText(img, text=text, org=(int(img.shape[1] / 2), 100), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=2, color=(0, 0, 255), thickness=3) # 화면에 승패 글자 출력
 
-            # Draw gesture result
-            if idx in rps_gesture.keys():
-                cv2.putText(img, text=rps_gesture[idx].upper(), org=(int(res.landmark[0].x * img.shape[1]), int(res.landmark[0].y * img.shape[0] + 20)), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(255, 255, 255), thickness=2)
 
-            # Other gestures
-            # cv2.putText(img, text=gesture[idx].upper(), org=(int(res.landmark[0].x * img.shape[1]), int(res.landmark[0].y * img.shape[0] + 20)), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(255, 255, 255), thickness=2)
+
+
 
             mp_drawing.draw_landmarks(img, res, mp_hands.HAND_CONNECTIONS)
             
