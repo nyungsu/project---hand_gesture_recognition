@@ -94,7 +94,7 @@ class RSPgame():
                         elif rps_result == 1 or 3: text = 'Tie'
                         
                     # org = (int(res.landmark[0].x * img.shape[1]), int(res.landmark[0].y * img.shape[0]))    # putText 위치 좌표
-                    cv2.putText(img, text=text, org=(int(img.shape[1] / 2), 100), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=2, color=(0, 0, 255), thickness=3) # 화면에 승패 글자 출력
+                    # cv2.putText(img, text=text, org=(int(img.shape[1] / 2), 100), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=2, color=(0, 0, 255), thickness=3) # 화면에 승패 글자 출력
 
 
 
