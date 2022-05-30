@@ -62,25 +62,25 @@ class MainWindow:
         
         
         # init_1
-        if self.count <= 30:
+        if self.count < 40:
             self.qPixmap = QPixmap()
             self.qPixmap.load("image/init_1.png")
             self.qPixmap = self.qPixmap.scaledToHeight(300)
             self.ui.img_me.setPixmap(self.qPixmap)
             
         # init_2
-        elif self.count >= 30 and self.count < 60:
+        elif self.count >= 40 and self.count < 80:
             self.qPixmap.load("image/init_2.png")
             self.qPixmap = self.qPixmap.scaledToHeight(300)
             self.ui.img_me.setPixmap(self.qPixmap)
         
         # init_3
-        elif self.count >= 60 and self.count <70 :
+        elif self.count >= 80 and self.count <110 :
             self.qPixmap.load("image/init_3.png")
             self.qPixmap = self.qPixmap.scaledToHeight(300)
             self.ui.img_me.setPixmap(self.qPixmap)  
             
-        elif self.count >=70 :
+        elif self.count >=110 :
             if self.RSPmodel.system == 0:
                 self.qPixmap.load("image/rock.png")
                 self.qPixmap = self.qPixmap.scaledToHeight(300)
@@ -94,7 +94,8 @@ class MainWindow:
             elif self.RSPmodel.system == 2:
                 self.qPixmap.load("image/paper.png")
                 self.qPixmap = self.qPixmap.scaledToHeight(300)
-                self.ui.img_me.setPixmap(self.qPixmap) 
+                self.ui.img_me.setPixmap(self.qPixmap)
+        
         
 
     def set_btn(self): 
@@ -108,11 +109,12 @@ class MainWindow:
             ret, img = cap.read()
             if ret:
                 if self.GameMode == True:
-                    self.RSPmodel.judge(img)
+                    
                     self.RSP_img()
                     # print(self.RSPmodel.text)
                     # self.RSPmodel.text로 결과 받을 수 있음
-                
+                    if self.count >=110 and self.count <=130:
+                        self.RSPmodel.judge(img)
                     
                 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
                 img = cv2.flip(img, 1)
