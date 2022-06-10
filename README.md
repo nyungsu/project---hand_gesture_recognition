@@ -3,7 +3,11 @@
 - 4-1학기 전자 응용 설계 프로젝트 입니다.
 - chat-scritp를 필수적으로 사용해야했습니다.
 - MediaPipe, PyQt5 라이브러리를 사용하였습니다.
+![image](https://user-images.githubusercontent.com/81195316/173036677-fc3d0451-9a51-4ba6-bf22-96d8f51874d8.png)
 
+
+## 알고리즘 순서도
+![전응설 기말 과제 순서도 drawio](https://user-images.githubusercontent.com/81195316/173036561-ee90ac2d-72e1-48f2-a77e-1376028bffcf.png)
 
 
  ## History
