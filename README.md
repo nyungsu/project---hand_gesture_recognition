@@ -5,6 +5,9 @@
 - MediaPipe, PyQt5 라이브러리를 사용하였습니다.
 - chat_script, GUI, RPSgame 모듈로 나누어 개발하였고, **RSPgame 개발 및 코드 통합**을 맡았습니다.
 - **대한임베디드 공학회 주최 2022 ICT 대학생 논문 경진대회 장려상 수상**
+
+<br>
+
 ![image](https://user-images.githubusercontent.com/81195316/173036677-fc3d0451-9a51-4ba6-bf22-96d8f51874d8.png)
 
 
